@@ -76,6 +76,7 @@ class PowerShellLexer(RegexLexer):
             # we need to count pairs of parentheses for correct highlight
             # of '$(...)' blocks in strings
             (r'\(', Punctuation, 'child'),
+            (r'\${', Punctuation, 'brace-exp'),
             (r'\s+', Text),
             (r'^(\s*#[#\s]*)(\.(?:%s))([^\n]*$)' % '|'.join(commenthelp),
              bygroups(Comment, String.Doc, Comment)),
@@ -96,6 +97,9 @@ class PowerShellLexer(RegexLexer):
             (r'-[a-z_]\w*', Name),
             (r'\w+', Name),
             (r'[.,;@{}\[\]$()=+*/\\&%!~?^`|<>-]|::', Punctuation),
+        'brace-exp': [
+            (r'}', Punctuation, '#pop'),
+            include('root'),
         ],
         'child': [
             (r'\)', Punctuation, '#pop'),
