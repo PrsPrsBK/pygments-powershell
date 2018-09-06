@@ -103,6 +103,9 @@ class PowerShellLexer(RegexLexer):
             (r'-[a-z_]\w*', Name),
             (r'\w+', Name),
             (r'[.,;@{}\[\]$()=+*/\\&%!~?^`|<>-]|::', Punctuation),
+            # :- of magick.exe info:-
+            (r'[\w+-\.:]+', Keyword),
+        ],
         'brace-exp': [
             (r'}', Punctuation, '#pop'),
             include('root'),
