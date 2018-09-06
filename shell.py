@@ -90,6 +90,8 @@ class PowerShellLexer(RegexLexer):
             (r"'([^']|'')*'", String.Single),
             (r'(\$|@@|@)((global|script|private|env):)?\w+',
              Name.Variable),
+            (r'(Function|Variable):\\?\w+',
+             Name.Variable),
             (r'(%s)\b' % '|'.join(keywords), Keyword),
             (r'-(%s)\b' % '|'.join(operators), Operator),
             (r'(%s)-[a-z_]\w*\b' % '|'.join(verbs), Name.Builtin),
